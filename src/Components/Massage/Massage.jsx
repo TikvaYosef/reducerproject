@@ -1,21 +1,28 @@
-import React, { useReducer } from "react";
-import { success, failed } from "../../Actions/MassegeAction";
-import { MessageReducer } from "../../Reducers/MessageReducer";
+import React, { useContext } from "react";
+import { success, show } from "../../Actions/MassegeAction";
+import { msContext } from "../../Context";
 
 
 
 
 export const Massage = () => {
-    const [massage, dispatch] = useReducer(MessageReducer, "massege");
+    const { massage, dispatch } = useContext(msContext);
 
     return (
         <div>
             <center>
-            <h2>{massage}</h2>
-            <button type="button" onClick={() => { dispatch(success()) }}>success</button>
-            <button type="button" onClick={() => { dispatch(failed()) }}>failed</button>
+                <h2>{massage}</h2>
+                <button type="button" onClick={() => { dispatch(success()) }}>success</button>
+
+                <div>
+
+                    {show.isOpen ? massage : "error not found"}
+
+                </div>
+
             </center>
-        </div>
+        </div >
     );
 
 }
+
